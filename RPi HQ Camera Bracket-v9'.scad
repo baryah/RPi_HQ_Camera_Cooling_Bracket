@@ -13,6 +13,7 @@ This program is free software: you can redistribute it and/or modify
    along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
+//uses tearDrop-cylinder.scad from http://www.thingiverse.com/thing:3457
 
 //Bracket to etend the body of RPi HQ Camera and mount 'things', such that the 'things' does not exert weight on the circuit plate of the camera.
 // all the dimentions are in 'mm'.
@@ -21,7 +22,7 @@ use <tearDrop-cylinder.scad>
 
 /* [Primary (Essential)] */
 parts=true;
-//all,1-top-1,2-top-2,3-bottom (without support structures),3.75,3.85,4-air duct-1,5-air duct-2,6-fan bracket,7-mesh bracket,8-Bracket RPi-1,9-Bracket RPi-2,9.5-Full Bracket_RPi,10-Wire box lid, 11-tripod ball head quick fix n release plate]
+//all,1-top-1,2-top-2,3-bottom (full),3.75,3.85,3.95 (parts of 3),4-air duct-1,5-air duct-2,6-fan bracket,7-mesh bracket,8-Bracket RPi-1,9-Bracket RPi-2,9.5-Full Bracket_RPi,10-Wire box lid, 11-tripod ball head quick fix n release plate]
 which_one="all"; //[all,1,2,3,3.75,3.85,3.95,4,5,6,7,8,9,9.5,10,11]
 //which_one="all"; //[all,top-1,top-2,bottom,air duct-1,air duct-2,fan bracket,mesh bracket,RPi-1,Bracket_RPi-2,Wire box lid]
 /* [Smoothness of curves - larger the no smoother the curves.] */
