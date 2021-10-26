@@ -9,3 +9,5 @@ My focus for designing this case was on four things –
 2.	Make it easy to fix a peltier for cooling the camera chip.
 3.	Make it adjustable enough to avoid using peltier, but keeping the form and usefulness of the case.
 4.	Make is easily mountable on various types of ball heads.
+
+Detailed description in the word file and a pdf file in the Docs folder
