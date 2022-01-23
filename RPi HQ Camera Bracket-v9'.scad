@@ -22,6 +22,8 @@ use <tearDrop-cylinder.scad>
 
 /* [Primary (Essential)] */
 parts=true;
+/* [Comes into afffect when 'parts' selected */
+separate=false;
 //all,1-top-1,2-top-2,3-bottom (full),3.75,3.85,3.95 (parts of 3),4-air duct-1,5-air duct-2,6-fan bracket,7-mesh bracket,8-Bracket RPi-1,9-Bracket RPi-2,9.5-Full Bracket_RPi,10-Wire box lid, 11-tripod ball head quick fix n release plate]
 which_one="all"; //[all,1,2,3,3.75,3.85,3.95,4,5,6,7,8,9,9.5,10,11]
 //which_one="all"; //[all,top-1,top-2,bottom,air duct-1,air duct-2,fan bracket,mesh bracket,RPi-1,Bracket_RPi-2,Wire box lid]
@@ -178,7 +180,7 @@ if(which_one=="3.95") {
     translate([-side_circuit/2-10,-side_circuit/2-12,-0.5-2])
     cube([side_circuit+20,90,4]);
     translate([-side_circuit/2-10,-side_circuit/2-12,3.5])
-    cube([side_circuit+20,90,7.5]);
+    cube([side_circuit+20,90,27.5]);
     }
 }
 
@@ -330,10 +332,71 @@ else
     translate([x_pos,y_pos,z_pos])
     //Draw the entire structure as it will appear assembled
     {   
-        translate([0,0,-1])
+        translate([0,0,-1+16*(separate?1:0)])  
         draw_top();    
-        translate([0,0,-1])
-        draw_bottom();    
+//        translate([0,0,-1+5*(separate?1:0)])
+//        draw_bottom();
+        
+        
+////            if(which_one=="3.75") 
+        translate([0,0,-1+5*(separate?1:0)])
+        {
+            translate([0,0,-9])
+            difference()
+            {
+            translate([0,0,9])
+            draw_bottom();
+            translate([-side_circuit/2-10,-side_circuit/2-12,3.5-2])
+            cube([side_circuit+20,90,7.5+2]);
+            }
+        }
+////        if(which_one=="3.85") 
+        translate([0,0,-1+11*(separate?1:0)])
+        {
+            translate([0,0,-9])
+            difference()
+            {
+            translate([0,0,9])
+            draw_bottom();
+            translate([-side_circuit/2-10,-side_circuit/2-12,-0.5-2])
+            cube([side_circuit+20,90,4+2]);
+            }
+        }
+
+////        if(which_one=="3.95") 
+        translate([0,0,-1+8*(separate?1:0)])
+        {
+            translate([0,0,-9])
+            difference()
+            {
+            translate([0,0,9])
+            draw_bottom();
+            translate([-side_circuit/2-10,-side_circuit/2-12,-0.5-2])
+            cube([side_circuit+20,90,4]);
+            translate([-side_circuit/2-10,-side_circuit/2-12,3.5])
+            cube([side_circuit+20,90,7.5]);
+            }
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+//        translate([0,0,-5])
         if(using_air_duct)
             {
                 draw_air_duct();
@@ -346,15 +409,16 @@ else
         
         
                 rotate([90,0,-90])
-                    translate([side_circuit/2+12-side_fan/2-0.5, -thick_bottom-thick_air_duct+side_fan/2, side_circuit/2+10+thick_fan])
+                    translate([side_circuit/2+12-side_fan/2-0.5, -thick_bottom-thick_air_duct+side_fan/2, side_circuit/2+10+thick_fan+10*(separate?1:0)])
                     draw_fan_bracket("fan");
     
     
                 //the other side - where did the 13 added to x axis in translate come from - not sure
                 rotate([90,0,90])
-                    translate([side_circuit/2+12-side_fan/2+13+6+0.5, -thick_bottom-thick_air_duct+side_fan/2, -side_circuit/2+10+thick_fan+side_circuit])
+                    translate([side_circuit/2+12-side_fan/2+13+6+0.5, -thick_bottom-thick_air_duct+side_fan/2, -side_circuit/2+10+thick_fan+side_circuit+10*(separate?1:0)])
                     draw_fan_bracket("mesh");
      
+                translate([0,0,-5*(separate?1:0)])
                 draw_rpi_argon_bracket();
                 
      
@@ -362,7 +426,7 @@ else
      //fix the ball head part
             //rotate([90, 180,0])
                 //translate([-side_circuit/2-10+2,length/2+thick_air_duct/2+2,thick_air_duct-thick_bottom-22])  //remove the last 4
-                translate([length/2, -side_circuit-7, -thick_bottom-thick_air_duct+(thick_air_duct-bottom_width)/2])    
+                translate([length/2, -side_circuit-7-5*(separate?1:0), -thick_bottom-thick_air_duct+(thick_air_duct-bottom_width)/2])    
                 rotate([-90, 180, 0])    
                         ball_head_fix();
                  
